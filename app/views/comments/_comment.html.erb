@@ -1,13 +1,18 @@
-<p>
-  <strong>User:</strong>
-  <%= comment.commenter %>
-</p>
+<table>
+    <tr class="user">
+      <td><strong>User:</strong>
+        <%= comment.commenter %>
+      </td>
+    </tr>
 
-<p>
-  <strong>Comment:</strong>
-  <%= comment.body %>
-</p>
+    <tr class="comment">
+      <td><strong>Comment:</strong>
+        <%= comment.body %>
+      </td>
+    </tr>
 
-<p>
-  <%= link_to "Delete", [comment.article, comment], method: :delete, data: {confirm: 'Are you sure?'} %>
-</p>
+    <tr class="delete">
+      <td><%= link_to "Delete", [comment.article, comment], method: :delete, data: {confirm: 'Are you sure?'} %>
+      </td>
+    </tr>
+</table>
