@@ -1,19 +1,50 @@
-<p>
-  <strong>Title:</strong>
-  <%= @article.title %>
-</p>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2">
+      <strong>Title:</strong>
+      <%= @article.title %>
+    </div>
+    <div class="col-md-7">
+      <strong>Text:</strong>
+      <%= @article.text %>
+    </div>
+  </div>
 
-<p>
-  <strong>Text:</strong>
-  <%= @article.text %>
-</p>
+  <div class="row">
+    <div class="col-md-10"></div>
+      <div class="col-md-2">
+        <%= link_to 'Edit', edit_article_path(@article) %>
+      </div>
+  </div>
 
-<h2>Comments</h2>
-<%= render @article.comments %>
+  <div class="row">
+    <div class="col-md-4">
+      <h2>Add a comment:</h2>
+    </div>
+    <div class="col-md-4">
+      <h2>Comments:</h2>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+      <%= render 'comments/form' %>
+    </div>
+    <div class="col-md-1"></div>
+    <div class="col-md-4">
+      <% if @article.comments.present? %>
+        <%= render @article.comments %>
+      <% else %>
+        Be the first to comment!
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-10"></div>
+    <div class="col-md-2">
+      <%= link_to 'Back', articles_path %>
+    </div>
+  </div>
 
 
-<h2>Add a comment:</h2>
-<%= render 'comments/form' %>
-
-<%= link_to 'Edit', edit_article_path(@article) %>
-<%= link_to 'Back', articles_path %>
