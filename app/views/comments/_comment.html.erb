@@ -10,9 +10,10 @@
         <%= comment.body %>
       </td>
     </tr>
-
+  <% if current_user %>
     <tr class="delete">
       <td><%= link_to "Delete", [comment.article, comment], method: :delete, data: {confirm: 'Are you sure?'} %>
       </td>
     </tr>
+  <% end %>
 </table>
