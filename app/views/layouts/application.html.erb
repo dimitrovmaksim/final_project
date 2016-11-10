@@ -9,7 +9,7 @@
   </head>
 
   <body class='<%= controller.controller_name %>'>
-    <div class="container-fluid">
+    <div class="container">
       <div class="row">
         <div class="col-xs-12 col-sm-6 col-md-1"></div>
         <div class="col-xs-12 col-sm-6 col-md-7">Logo</div>
@@ -18,7 +18,7 @@
           <ul>
             <li><%= link_to 'Index', articles_path %></li>
             <% if current_user %>
-              <li>Loged in as <%= current_user.user_name %></li>
+              <li><%= current_user.user_name %></li>
               <li><%= link_to "Log out", log_out_path %></li>
             <% else %>
               <li><%= link_to "Sign up", sign_up_path %></li>
