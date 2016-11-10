@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  skip_before_action :authorize
   def new
     @user = User.new
   end
@@ -16,6 +17,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:username, :email, :password, :password_confirmation, :user_name, :salt, :encrypted_password)
+    params.require(:user).permit( :email, :password, :password_confirmation, :user_name, :salt, :encrypted_password)
   end
 end

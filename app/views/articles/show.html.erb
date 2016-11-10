@@ -32,8 +32,8 @@
     </div>
     <div class="col-md-1"></div>
     <div class="col-md-4">
-      <% if @article.comments.present? %>
-        <%= render @article.comments %>
+      <% if @comments.present? %>
+        <%= render @comments %>
       <% else %>
         Be the first to comment!
       <% end %>
