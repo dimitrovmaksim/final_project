@@ -1,6 +1,6 @@
 <table>
     <tr class="user">
-        <% if comment.user.present? %>
+        <% if comment.user %>
           <strong><%= comment.user.user_name %></strong>: <%= comment.body %>
         <% else %>
           <strong>User deleted</strong>: <%= comment.body %>
@@ -8,7 +8,7 @@
       </td>
     </tr>
 
-  <% if current_user.present? && current_user.admin? %>
+  <% if current_user && current_user.admin? %>
     <tr class="delete">
       <td><%= link_to "Delete", [comment.article, comment], method: :delete, data: {confirm: 'Are you sure?'} %></td>
     </tr>
