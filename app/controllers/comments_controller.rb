@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  before_filter :admin, only: :destroy
 
   def create
     @article = Article.find(params[:article_id])

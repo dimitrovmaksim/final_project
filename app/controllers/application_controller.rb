@@ -5,6 +5,12 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def admin
+    unless current_user && current_user.admin?
+      redirect_to articles_path alert: "Invalid Page"
+    end
+  end
+
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
