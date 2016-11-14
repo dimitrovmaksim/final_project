@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  skip_before_action :check_admin, only: :create
 
   def create
     @article = Article.find(params[:article_id])
