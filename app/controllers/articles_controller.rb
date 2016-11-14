@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
   skip_before_action :authorize, only: [:index, :show]
-  before_filter :admin, only: [:edit, :destroy, :new]
+  skip_before_action :check_admin, only: [:index, :show]
   def index
     @articles = Article.all
   end

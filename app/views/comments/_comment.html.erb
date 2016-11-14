@@ -1,12 +1,11 @@
 <table>
-    <tr class="user">
-        <% if comment.user %>
-          <strong><%= comment.user.user_name %></strong>: <%= comment.body %>
-        <% else %>
-          <strong>User deleted</strong>: <%= comment.body %>
-        <% end %>
-      </td>
-    </tr>
+  <tr class="user">
+      <% if comment.user %>
+        <strong><%= comment.user.user_name %></strong>: <%= comment.body %>
+      <% else %>
+        <strong>User deleted</strong>: <%= comment.body %>
+      <% end %>
+  </tr>
 
   <% if current_user && current_user.admin? %>
     <tr class="delete">

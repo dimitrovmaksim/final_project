@@ -9,23 +9,19 @@
   </head>
 
   <body class='<%= controller.controller_name %>'>
-    <div class="container">
-      <div class="row">
-        <div class="col-xs-12 col-sm-6 col-md-1"></div>
-        <div class="col-xs-12 col-sm-6 col-md-7">Logo</div>
-        <div class="col-xs-6 col-md-2"></div>
-        <div class="col-xs-6 col-md-2">
-          <ul>
-            <li><%= link_to 'Index', articles_path %></li>
-            <% if current_user %>
-              <li><%= current_user.user_name %></li>
-              <li><%= link_to "Log out", log_out_path %></li>
-            <% else %>
-              <li><%= link_to "Sign up", sign_up_path %></li>
-              <li><%= link_to "Log in", log_in_path %></li>
-            <% end %>
-          </ul>
-        </div>
+    <div class="blog-head">
+      <div class="container">
+        <nav class="blog-nav">
+          <%= link_to 'Index', articles_path, :class => "blog_nav_item active"  %>
+          <% if current_user %>
+            <a class="blog-nav-item" href="#"><%= "#{current_user.user_name}" %></a>
+            <%= link_to "Log out", log_out_path, :class => "blog_nav_item active" %>
+          <% else %>
+            <%= link_to "Sign up", sign_up_path, :class => "blog_nav_item active" %>
+            <%= link_to "Log in", log_in_path, :class => "blog_nav_item active" %>
+          <% end %>
+        </nav>
+
         <div id="main">
           <%= yield %>
         </div>

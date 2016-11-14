@@ -1,11 +1,12 @@
 class ApplicationController < ActionController::Base
   before_action :authorize
+  before_action :check_admin
   protect_from_forgery with: :exception
   helper_method :current_user
 
   private
 
-  def admin
+  def check_admin
     unless current_user && current_user.admin?
       redirect_to articles_path alert: "Invalid Page"
     end
