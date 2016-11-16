@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   skip_before_action :authorize
+  skip_before_action :check_admin
   def new
     @user = User.new
   end

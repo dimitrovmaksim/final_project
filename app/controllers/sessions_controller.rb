@@ -2,7 +2,6 @@ class SessionsController < ApplicationController
   skip_before_action :authorize, only: [:new, :create]
   skip_before_action :check_admin
 
-
   def new
   end
 

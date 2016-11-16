@@ -1,51 +1,88 @@
-<div class="row">
-  <div class="col-md-1"></div>
-  <div class="col-md-2">
-    <h1>Articles</h1>
-  </div>
-</div>
+<div class="container">
 
-<div class="row">
-  <div class="col-md-1"></div>
-  <div class="col-md-2">
-    Title
-  </div>
-  <div class="col-md-9">
-    Text
-  </div>
-    <th colspan="2"></th>
-</div>
+  <div class="row">
 
+    <!-- Blog Entries Column -->
+    <div class="col-md-8">
+      <h1 class="page-header">
+        <% if current_user && current_user.admin? %>
+          <%= link_to 'New article', new_article_path, :class => "btn btn-sm btn-success" %>
+        <% end %>
+      </h1>
 
-  <% @articles.each do |article| %>
-    <% cache article do %>
-      <div class="row">
-        <div class="col-md-1"></div>
-        <div class="col-md-2">
-          <td><%= article.title %></td>
-        </div>
-        <div class="col-md-7">
-          <td><%= article.text %></td>
-        </div>
-      <% end %>
-        <div class="col-md-2">
-          <ul>
-            <li><%= link_to 'Show', article_path(article) %></li>
+      <!-- First Blog Post -->
+      <% @articles.each do |article| %>
+        <% cache article do %>
+          <h2>
+            <%= article.title %>
+          </h2>
+          <p class="lead">
+            by <%= article.user.user_name %>
+          </p>
+          <p>
+            <span class="glyphicon glyphicon-time"></span> Posted on <%= article.created_at.strftime("%b %d, %Y") %>
+          </p>
+
+            <img class="img-responsive" src="http://placehold.it/500x150" alt="">
+          <%= article.text %>
+          <hr>
+          <%= link_to article_path(article), :class => "btn btn-sm btn-primary" do %>Read more<span class="glyphicon glyphicon-chevron-right"></span>
+          <% end %>
             <% if current_user && current_user.admin? %>
-              <li><%= link_to 'Edit', edit_article_path(article) %></li>
-              <li><%= link_to 'Delete', article_path(article), method: :delete, data: {confirm: 'Are you sure?'} %></li>
+              <%= link_to 'Edit', edit_article_path(article), :class => "btn btn-sm btn-warning" %>
+              <%= link_to 'Delete', article_path(article), :class => "btn btn-sm btn-danger", method: :delete, data: {confirm: 'Are you sure?'} %>
             <% end %>
-          </ul>
+
+        <% end %>
+      <% end %>
+      <hr>
+
+      <!-- Pager -->
+      <ul class="pager">
+        <li class="previous">
+          <a href="#">&larr; Newer</a>
+        </li>
+        <li class="next">
+          <a href="#">Older &rarr;</a>
+        </li>
+      </ul>
+    </div>
+    <hr>
+    <hr>
+    <div class="col-md-4">
+      <!-- Blog Search Well -->
+      <div class="well">
+       <h4>Blog Search</h4>
+       <div class="input-group">
+          <input type="text" class="form-control">
+          <span class="input-group-btn">
+             <button class="btn btn-default" type="button">
+                <span class="glyphicon glyphicon-search"></span>
+          </button>
+          </span>
+        </div>
+         <!-- /.input-group -->
+      </div>
+
+      <div class="well">
+       <h4>Archive</h4>
+       <div class="row">
+          <div class="col-lg-6">
+            <ul class="list-unstyled">
+              <li><a href="#">October</a></li>
+              <li><a href="#">September</a></li>
+              <li><a href="#">August</a></li>
+              <li><a href="#">July</a></li>
+            </ul>
+          </div>
         </div>
       </div>
-  <% end %>
 
-
-<div class="row">
-  <div class="col-md-1"></div>
-  <div class="col-md-2">
-    <% if current_user && current_user.admin? %>
-      <%= link_to 'New article', new_article_path %>
-    <% end %>
+      <div class="well">
+        <h4>Tags</h4>
+      </div>
+    </div>
   </div>
 </div>
+
+

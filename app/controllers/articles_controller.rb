@@ -2,7 +2,7 @@ class ArticlesController < ApplicationController
   skip_before_action :authorize, only: [:index, :show]
   skip_before_action :check_admin, only: [:index, :show]
   def index
-    @articles = Article.all
+    @articles = Article.order(created_at: :desc)
   end
 
   def show
@@ -20,7 +20,7 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
-
+    @article.user = current_user
     if @article.save
       redirect_to @article
     else
