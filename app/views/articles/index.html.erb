@@ -21,7 +21,7 @@
             <span class="glyphicon glyphicon-time"></span> Posted on <%= article.created_at.strftime("%b %d, %Y") %>
           </p>
 
-            <img class="img-responsive" src="http://placehold.it/500x150" alt="">
+            <%= image_tag(article.image_url, :class => "img-responsive", size: "350x150") %>
           <%= article.text %>
           <hr>
           <%= link_to article_path(article), :class => "btn btn-sm btn-primary" do %>Read more<span class="glyphicon glyphicon-chevron-right"></span>
