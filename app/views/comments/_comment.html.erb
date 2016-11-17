@@ -1,15 +1,17 @@
-<table>
-  <tr class="user">
-      <% if comment.user %>
-        <strong><%= comment.user.user_name %></strong>: <%= comment.body %>
-      <% else %>
-        <strong>User deleted</strong>: <%= comment.body %>
-      <% end %>
-  </tr>
-
-  <% if current_user && current_user.admin? %>
-    <tr class="delete">
-      <td><%= link_to "Delete", [comment.article, comment], method: :delete, data: {confirm: 'Are you sure?'} %></td>
-    </tr>
-  <% end %>
-</table>
+<div class="media">
+  <div class="media-body">
+    <% if comment.user %>
+      <h4 class="media-heading"><%= comment.user.user_name %>
+        <small><%= comment.created_at.strftime("%B %d, %Y") %></small>
+        <% if current_user && current_user.admin? %>
+          <%= link_to "Delete", [comment.article, comment], method: :delete, data: {confirm: 'Are you sure?'}, :class => "btn btn-xs btn-danger" %>
+        <% end %>
+      </h4>
+    <% else %>
+      <h4 class="media-heading">Deleted user
+        <small><%= comment.created_at.strftime("%B %d, %Y") %></small>
+      </h4>
+    <% end %>
+      <%= comment.body %>
+  </div>
+</div>

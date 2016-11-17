@@ -1,13 +1,7 @@
 <div class="container">
-
   <div class="row">
-
     <!-- Blog Entries Column -->
     <div class="col-md-8">
-      <h1 class="page-header">
-       <hr><small>Welcome to my blog</small>
-      </h1>
-
       <!-- First Blog Post -->
       <% @articles.each do |article| %>
         <% cache article do %>
@@ -20,10 +14,12 @@
           <p>
             <span class="glyphicon glyphicon-time"></span> Posted on <%= article.created_at.strftime("%b %d, %Y") %>
           </p>
-
-            <%= image_tag(article.image_url, :class => "img-responsive", size: "350x150") %>
+          <p>
+          <%= image_tag(article.image_url, class: "img-responsive", size: "350x150") %>
+          </p>
+          <p>
           <%= article.text %>
-          <hr>
+          </p>
           <%= link_to article_path(article), :class => "btn btn-sm btn-primary" do %>Read more<span class="glyphicon glyphicon-chevron-right"></span>
           <% end %>
             <% if current_user && current_user.admin? %>
@@ -33,7 +29,6 @@
 
         <% end %>
       <% end %>
-      <hr>
 
       <!-- Pager -->
       <ul class="pager">
@@ -45,8 +40,6 @@
         </li>
       </ul>
     </div>
-    <hr>
-    <hr>
     <%= render 'articles/sidebar' %>
   </div>
 </div>
