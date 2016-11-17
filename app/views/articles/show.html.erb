@@ -9,11 +9,13 @@
 
         <!-- Author -->
         <p class="lead">
-            by <%= @article.user.user_name %>
+          by <%= @article.user.user_name %>
         </p>
 
         <!-- Date/Time -->
-        <p><span class="glyphicon glyphicon-time"></span> <%= @article.created_at.strftime("%b %d, %Y") %></p>
+        <p>
+          <span class="glyphicon glyphicon-time"></span> <%= @article.created_at.strftime("%b %d, %Y") %>
+        </p>
 
         <!-- Preview Image -->
         <% if @article.image_url.present? %>
@@ -25,21 +27,21 @@
         <p class="lead"><%= simple_format(@article.text) %></p>
 
         <p>
-        <% if current_user && current_user.admin? %>
-          <%= link_to 'Edit', edit_article_path(@article), :class => "btn btn-sm btn-warning" %>
-          <%= link_to 'Delete', article_path(@article), :class => "btn btn-sm btn-danger", method: :delete, data: {confirm: 'Are you sure?'} %>
-        <% end %>
-        <%= link_to 'Back', articles_path, :class => "btn btn-sm btn-primary" %>
+          <% if current_user && current_user.admin? %>
+            <%= link_to 'Edit', edit_article_path(@article), :class => "btn btn-sm btn-warning" %>
+            <%= link_to 'Delete', article_path(@article), :class => "btn btn-sm btn-danger", method: :delete, data: {confirm: 'Are you sure?'} %>
+          <% end %>
+          <%= link_to 'Back', articles_path, :class => "btn btn-sm btn-primary" %>
         </p>
         <p>
-        <%= render 'comments/form' %>
+          <%= render 'comments/form' %>
         </p>
         <p>
-        <% if @comments.present? %>
-          <%= render @comments %>
-        <% else %>
-          Be the first to comment!
-        <% end %>
+          <% if @comments.present? %>
+            <%= render @comments %>
+          <% else %>
+            Be the first to comment!
+          <% end %>
         </p>
       <% end %>
     </div>

@@ -10,8 +10,11 @@
     <% else %>
       <h4 class="media-heading">Deleted user
         <small><%= comment.created_at.strftime("%B %d, %Y") %></small>
+        <% if current_user && current_user.admin? %>
+          <%= link_to "Delete", [comment.article, comment], method: :delete, data: {confirm: 'Are you sure?'}, :class => "btn btn-xs btn-danger" %>
+        <% end %>
       </h4>
     <% end %>
-      <%= simple_format(comment.body) %>
+    <%= simple_format(comment.body) %>
   </div>
 </div>
