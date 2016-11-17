@@ -12,6 +12,6 @@
         <small><%= comment.created_at.strftime("%B %d, %Y") %></small>
       </h4>
     <% end %>
-      <%= comment.body %>
+      <%= simple_format(comment.body) %>
   </div>
 </div>

@@ -17,11 +17,12 @@
 
         <!-- Preview Image -->
         <% if @article.image_url.present? %>
-          <%= image_tag(@article.image_url, class: "img-responsive", size: "500x250") %>
+          <img class="img-responsive" src=<%= @article.image_url %> width="900" height="350" alt="Image Missing">
         <% end %>
 
+        <hr>
         <!-- Post Content -->
-        <p class="lead"><%= @article.text %></p>
+        <p class="lead"><%= simple_format(@article.text) %></p>
 
         <p>
         <% if current_user && current_user.admin? %>
