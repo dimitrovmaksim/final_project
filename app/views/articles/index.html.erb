@@ -20,9 +20,14 @@
           <p>
             <span class="glyphicon glyphicon-time"></span> Posted on <%= article.created_at.strftime("%b %d, %Y") %>
           </p>
-
-            <%= image_tag(article.image_url, :class => "img-responsive", size: "350x150") %>
+          <p>
+          <% if article.image_url.present? %>
+            <%= image_tag(article.image_url, class: "img-responsive", size: "350x150") %>
+          <% end %>
+          </p>
+          <p>
           <%= article.text %>
+          </p>
           <hr>
           <%= link_to article_path(article), :class => "btn btn-sm btn-primary" do %>Read more<span class="glyphicon glyphicon-chevron-right"></span>
           <% end %>
