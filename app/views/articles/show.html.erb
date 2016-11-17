@@ -16,7 +16,9 @@
         <p><span class="glyphicon glyphicon-time"></span> <%= @article.created_at.strftime("%b %d, %Y") %></p>
 
         <!-- Preview Image -->
-        <%= image_tag(@article.image_url, class: "img-responsive", size: "500x250") %>
+        <% if @article.image_url.present? %>
+          <%= image_tag(@article.image_url, class: "img-responsive", size: "500x250") %>
+        <% end %>
 
         <!-- Post Content -->
         <p class="lead"><%= @article.text %></p>
