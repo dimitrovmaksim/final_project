@@ -1,7 +1,12 @@
 <div class="container">
-  <h1>New Article</h1>
+  <div class="row">
+    <div class="col-lg-8">
+      <h1>New Article</h1>
 
-  <%= render 'form' %>
-
-  <%= link_to 'Back', articles_path %>
+      <%= render 'form' %>
+      <hr>
+      <%= link_to 'Back', articles_path %>
+    </div>
+    <%= render 'articles/sidebar' %>
+  </div>
 </div>

@@ -34,6 +34,7 @@ class ArticlesController < ApplicationController
     if @article.update(article_params)
       redirect_to @article
     else
+      flash.now[:error] = "Something went wrong"
       render 'edit'
     end
   end
