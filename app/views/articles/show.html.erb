@@ -1,54 +1,50 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-2">
-      <strong>Title:</strong>
-      <%= @article.title %>
-    </div>
-    <div class="col-md-7">
-      <strong>Text:</strong>
-      <%= @article.text %>
-    </div>
-  </div>
+    <!-- Blog Post Content Column -->
+    <div class="col-lg-8">
+      <% cache @article do %>
 
-  <div class="row">
-    <div class="col-md-10"></div>
-      <div class="col-md-2">
-      <% if current_user && current_user.admin? %>
-        <%= link_to 'Edit', edit_article_path(@article) %>
+        <!-- Title -->
+        <h1><%= @article.title %></h1>
+
+        <!-- Author -->
+        <p class="lead">
+          by <%= @article.user.user_name %>
+        </p>
+
+        <!-- Date/Time -->
+        <p>
+          <span class="glyphicon glyphicon-time"></span> <%= @article.created_at.strftime("%b %d, %Y") %>
+        </p>
+
+        <!-- Preview Image -->
+        <% if @article.image_url.present? %>
+          <img class="img-responsive" src=<%= @article.image_url %> width="900" height="350" alt="Image Missing">
+        <% end %>
+
+        <hr>
+        <!-- Post Content -->
+        <p class="lead"><%= simple_format(@article.text) %></p>
+
+        <p>
+          <% if current_user && current_user.admin? %>
+            <%= link_to 'Edit', edit_article_path(@article), :class => "btn btn-sm btn-warning" %>
+            <%= link_to 'Delete', article_path(@article), :class => "btn btn-sm btn-danger", method: :delete, data: {confirm: 'Are you sure?'} %>
+          <% end %>
+          <%= link_to 'Back', articles_path, :class => "btn btn-sm btn-primary" %>
+        </p>
+        <p>
+          <%= render 'comments/form' %>
+        </p>
+        <p>
+          <% if @comments.present? %>
+            <%= render @comments %>
+          <% else %>
+            Be the first to comment!
+          <% end %>
+        </p>
       <% end %>
-      </div>
+    </div>
+    <%= render 'articles/sidebar' %>
   </div>
-
-  <div class="row">
-    <div class="col-md-4">
-    <% if current_user %>
-      <h2>Add a comment:</h2>
-    <% end %>
-    </div>
-    <div class="col-md-4">
-      <h2>Comments:</h2>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-3">
-      <%= render 'comments/form' %>
-    </div>
-    <div class="col-md-1"></div>
-    <div class="col-md-4">
-      <% if @comments.present? %>
-        <%= render @comments %>
-      <% else %>
-        Be the first to comment!
-      <% end %>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-10"></div>
-    <div class="col-md-2">
-      <%= link_to 'Back', articles_path %>
-    </div>
-  </div>
-
-
+</div>

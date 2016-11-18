@@ -1,12 +1,15 @@
 <% if current_user %>
-  <%= form_for([@article, Comment.new]) do |f| %>
-    <p>
-      <%= f.text_area :body %>
-    </p>
-    <p>
-      <%= f.submit %>
-    </p>
-  <% end %>
+  <div class="well">
+    <%= form_for([@article, Comment.new], :html => {:class => "form-horizontal"}) do |f| %>
+      <h4>Leave a Comment:</h4>
+      <form role="form">
+          <div class="form-group">
+            <%= f.text_area :body, :class => "form-control" %>
+          </div>
+          <%= f.submit :class => "btn btn-primary" %>
+      </form>
+    <% end %>
+  </div>
 <% else %>
-  You must <%= link_to "Log In", log_in_path %> to comment!
+      You must <%= link_to "Log In", log_in_path %> to comment!
 <% end %>
