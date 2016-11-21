@@ -17,7 +17,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to root_url, :notice => "Signed up!"
+      redirect_to root_url, notice: "Registered!"
     else
       render "new"
     end
@@ -27,15 +27,10 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
 
     if current_user.id == @user.id
-      if current_user.admin?
-        @user.update(user_params)
-        redirect_to @user, :notice => "User updated!"
+      if @user.update(update_params)
+        redirect_to @user, notice: "User updated!"
       else
-        if @user.update(update_params)
-          redirect_to @user, :notice => "User updated!"
-        else
-          render 'show'
-        end
+        render 'show'
       end
     else
       redirect_to root_path
@@ -47,8 +42,7 @@ class UsersController < ApplicationController
 
     unless @user == current_user
       @user.destroy
-      flash[:success] = "User deleted"
-      redirect_to users_path
+      redirect_to users_path, notice: "User deleted!"
     else
       flash[:error] = "You can't delete yourself!"
       redirect_to root_path
@@ -58,7 +52,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit( :email, :password, :password_confirmation, :user_name, :salt, :encrypted_password)
+    params.require(:user).permit( :email, :password, :password_confirmation, :user_name)
   end
 
   def update_params

@@ -23,8 +23,7 @@ class ArticlesController < ApplicationController
     @article = Article.new(article_params)
     @article.user = current_user
     if @article.save
-      redirect_to @article
-      flash[:notice] = 'Article created!'
+      redirect_to @article, notice: 'Article created!'
     else
       render 'new'
     end
@@ -34,8 +33,7 @@ class ArticlesController < ApplicationController
     @article = Article.find(params[:id])
 
     if @article.update(article_params)
-      redirect_to @article
-      flash[:notice] = 'Article updated!'
+      redirect_to @article, notice: 'Article updated!'
     else
       render 'edit'
     end
@@ -44,9 +42,8 @@ class ArticlesController < ApplicationController
   def destroy
     @article = Article.find(params[:id])
     @article.destroy
-    flash[:notice] = 'Article deleted!'
 
-    redirect_to articles_path
+    redirect_to articles_path, notice: 'Article deleted!'
   end
 
   private

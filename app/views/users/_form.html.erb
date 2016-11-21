@@ -10,7 +10,7 @@
     </div>
   <% end %>
 
-  <% if controller.action_name == 'new' || current_user.admin? %>
+  <% if controller.action_name == 'new' %>
     <p>
       <%= f.label :Username %><br />
       <%= f.text_field :user_name %>
