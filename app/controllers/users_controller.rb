@@ -14,10 +14,6 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-  def edit
-    @user = User.find(params[:id])
-  end
-
   def create
     @user = User.new(user_params)
     if @user.save
@@ -31,15 +27,18 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
 
     if current_user.id == @user.id
-      if @user.update(user_params)
-        redirect_to @user, :notice => "Signed up!"
+      if current_user.admin?
+        @user.update(user_params)
+        redirect_to @user, :notice => "User updated!"
       else
-        flash.now[:error] = "Something went wrong"
-        render 'show'
+        if @user.update(update_params)
+          redirect_to @user, :notice => "User updated!"
+        else
+          render 'show'
+        end
       end
     else
-      flash.now[:error] = "Insufficient rights!"
-      render 'show'
+      redirect_to root_path
     end
   end
 
@@ -49,16 +48,20 @@ class UsersController < ApplicationController
     unless @user == current_user
       @user.destroy
       flash[:success] = "User deleted"
+      redirect_to users_path
     else
       flash[:error] = "You can't delete yourself!"
+      redirect_to root_path
     end
-    redirect_to users_path
-
   end
 
   private
 
   def user_params
     params.require(:user).permit( :email, :password, :password_confirmation, :user_name, :salt, :encrypted_password)
+  end
+
+  def update_params
+    params.require(:user).permit(:password, :password_confirmation, :salt, :encrypted_password)
   end
 end

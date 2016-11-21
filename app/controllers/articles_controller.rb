@@ -1,6 +1,7 @@
 class ArticlesController < ApplicationController
   skip_before_action :authorize, only: [:index, :show]
   skip_before_action :check_admin, only: [:index, :show]
+
   def index
     @articles = Article.order(created_at: :desc)
   end
@@ -23,6 +24,7 @@ class ArticlesController < ApplicationController
     @article.user = current_user
     if @article.save
       redirect_to @article
+      flash[:notice] = 'Article created!'
     else
       render 'new'
     end
@@ -33,8 +35,8 @@ class ArticlesController < ApplicationController
 
     if @article.update(article_params)
       redirect_to @article
+      flash[:notice] = 'Article updated!'
     else
-      flash.now[:error] = "Something went wrong"
       render 'edit'
     end
   end
@@ -42,6 +44,7 @@ class ArticlesController < ApplicationController
   def destroy
     @article = Article.find(params[:id])
     @article.destroy
+    flash[:notice] = 'Article deleted!'
 
     redirect_to articles_path
   end

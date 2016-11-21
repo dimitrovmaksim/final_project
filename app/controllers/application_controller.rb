@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   before_action :check_admin
   protect_from_forgery with: :exception
   helper_method :current_user
+  helper_method :check_admin
 
   private
 
