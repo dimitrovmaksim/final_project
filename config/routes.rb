@@ -4,10 +4,12 @@ Rails.application.routes.draw do
   get 'sign_up' => 'users#new', :as => 'sign_up'
   get 'articles/index'
   root 'articles#index'
+  get '/tags' => 'tags#index'
   resources :articles do
     resources :comments
   end
   resources :users
   resources :sessions
+  resources :tags, only: [:show, :index, :destroy]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

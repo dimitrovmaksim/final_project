@@ -1,9 +1,10 @@
 <div class="container">
+  <h4><i>Articles Tagged with "<%= @tag.name %>"</i></h4>
   <div class="row">
     <!-- Blog Entries Column -->
     <div class="col-md-8">
       <!-- First Blog Post -->
-      <% @articles.each do |article| %>
+      <% @tag.articles.reverse.each do |article| %>
         <% cache article do %>
           <h2>
             <%= article.title %>
@@ -49,5 +50,3 @@
     <%= render 'layouts/sidebar' %>
   </div>
 </div>
-
-

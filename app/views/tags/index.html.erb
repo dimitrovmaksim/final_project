@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8">
+      <% @tags.each do |tag| %>
+        <p>
+          <%= link_to tag.name, tag_path(tag) %>
+          <%= link_to 'Delete', tag, :class => "btn btn-xs btn-danger", method: :delete, data: {confirm: 'Are you sure?'} %>
+        </p>
+      <% end %>
+    </div>
+    <%= render 'layouts/sidebar' %>
+  </div>
+</div>
