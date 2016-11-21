@@ -1,7 +1,12 @@
-<div class="container-fluid">
-  <h1>Edit article</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8">
+      <h1>Edit article</h1>
 
-  <%= render 'form' %>
-
-  <%= link_to 'Back', articles_path %>
+      <%= render 'form' %>
+      <hr>
+      <%= link_to 'Home', articles_path, :class => "btn btn-sm btn-primary" %>
+    </div>
+    <%= render 'articles/sidebar' %>
+  </div>
 </div>

@@ -27,10 +27,13 @@
               <li>
                 <%= link_to 'New article', new_article_path %>
               </li>
+              <li>
+                <%= link_to "Users", users_path %>
+              </li>
             <% end %>
             <% if current_user %>
               <li>
-                <a href="#"><%= "#{current_user.user_name}" %></a>
+                <%= link_to "#{current_user.user_name}", current_user %></a>
               </li>
               <li>
                 <%= link_to "Log out", log_out_path %>
@@ -48,12 +51,24 @@
       </div>
     </nav>
     <p class="main">
+      <% flash.each do |name, msg| %>
+        <div class="container">
+          <% if flash[:error].present? %>
+            <div class="alert alert-warning fade in">
+              <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+              <strong>ERROR!</strong><%= content_tag :div, msg, :id => "flash_#{name}" %>
+            </div>
+          <% else %>
+            <div class="alert alert-success alert-dismissible fade in">
+              <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+              <%= content_tag :div, msg, :id => "flash_#{name}" %>
+            </div>
+          <% end %>
+        </div>
+      <%end %>
       <div id="main">
         <%= yield %>
       </div>
     </p>
-    <% flash.each do |name, msg| %>
-      <%= content_tag :div, msg, :id => "flash_#{name}" %>
-    <% end %>
   </body>
 </html>

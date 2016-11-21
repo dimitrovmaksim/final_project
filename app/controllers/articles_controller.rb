@@ -1,6 +1,7 @@
 class ArticlesController < ApplicationController
   skip_before_action :authorize, only: [:index, :show]
   skip_before_action :check_admin, only: [:index, :show]
+
   def index
     @articles = Article.order(created_at: :desc)
   end
@@ -22,7 +23,7 @@ class ArticlesController < ApplicationController
     @article = Article.new(article_params)
     @article.user = current_user
     if @article.save
-      redirect_to @article
+      redirect_to @article, notice: 'Article created!'
     else
       render 'new'
     end
@@ -32,7 +33,7 @@ class ArticlesController < ApplicationController
     @article = Article.find(params[:id])
 
     if @article.update(article_params)
-      redirect_to @article
+      redirect_to @article, notice: 'Article updated!'
     else
       render 'edit'
     end
@@ -42,7 +43,7 @@ class ArticlesController < ApplicationController
     @article = Article.find(params[:id])
     @article.destroy
 
-    redirect_to articles_path
+    redirect_to articles_path, notice: 'Article deleted!'
   end
 
   private
