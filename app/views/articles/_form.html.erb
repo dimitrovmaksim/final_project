@@ -28,7 +28,13 @@
       <%= f.label :image_url %><br>
       <%= f.text_field :image_url, :size=>"58" %>
     </div>
+
+    <div class="field">
+      <%= f.label :tag_list, "Tags (separated by commas)" %><br />
+      <%= f.text_field :tag_list %>
+    </div>
     <hr>
+
     <div class="action">
       <%= f.submit %><br>
     </div>
