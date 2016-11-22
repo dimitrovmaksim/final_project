@@ -5,7 +5,7 @@
    <div class="input-group">
       <%= form_tag({:controller => "articles", :action => "index"}, :method => "get", id: "search-form") do %>
         <%= text_field_tag :search, params[:search], placeholder: "Search Posts" %>
-          <%= submit_tag "Search", class: 'btn btn-default' %>
+        <%= submit_tag "Search", class: 'btn btn-default' %>
       <% end %>
     </div>
      <!-- /.input-group -->
