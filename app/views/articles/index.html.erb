@@ -1,1 +1,12 @@
-<%= render partial: 'articles/articles_list', locals: { articles: @articles } %>
+<% if @articles.present? %>
+  <%= render partial: 'articles/articles_list', locals: { articles: @articles } %>
+<% else %>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8">
+        <h4>No results for <i>"<%= params[:search] %>"</i></h4>
+      </div>
+      <%= render 'layouts/sidebar' %>
+    </div>
+  </div>
+<% end %>

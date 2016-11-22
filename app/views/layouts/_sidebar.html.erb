@@ -3,12 +3,10 @@
   <div class="well">
    <h4>Blog Search</h4>
    <div class="input-group">
-      <input type="text" class="form-control">
-      <span class="input-group-btn">
-         <button class="btn btn-default" type="button">
-            <span class="glyphicon glyphicon-search"></span>
-      </button>
-      </span>
+      <%= form_tag({:controller => "articles", :action => "index"}, :method => "get", id: "search-form") do %>
+        <%= text_field_tag :search, params[:search], placeholder: "Search Posts" %>
+        <%= submit_tag "Search", class: 'btn btn-default' %>
+      <% end %>
     </div>
      <!-- /.input-group -->
   </div>

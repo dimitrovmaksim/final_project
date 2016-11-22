@@ -3,7 +3,11 @@ class ArticlesController < ApplicationController
   skip_before_action :check_admin, only: [:index, :show]
 
   def index
-    @articles = Article.order(created_at: :desc)
+    if params[:search]
+      @articles = Article.search(params[:search]).order(created_at: :desc)
+    else
+      @articles = Article.order(created_at: :desc)
+    end
   end
 
   def show
