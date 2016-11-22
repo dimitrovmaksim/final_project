@@ -36,7 +36,7 @@
             <%= link_to 'Edit', edit_article_path(@article), :class => "btn btn-sm btn-warning" %>
             <%= link_to 'Delete', article_path(@article), :class => "btn btn-sm btn-danger", method: :delete, data: {confirm: 'Are you sure?'} %>
           <% end %>
-          <%= link_to 'Back', articles_path, :class => "btn btn-sm btn-primary" %>
+          <%= link_to 'Home', articles_path, :class => "btn btn-sm btn-primary" %>
         </p>
         <p>
           <%= render 'comments/form' %>
