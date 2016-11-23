@@ -5,16 +5,17 @@ class ArticlesController < ApplicationController
   def index
 
     @page = params[:page].to_i
+    per_page = 5
     @newer_page = @page - 1 unless @page == 0
-    @older_page = @page + 1 unless (@page * 5 > Article.count)
+    @older_page = @page + 1 unless (@page * per_page > Article.count)
 
     if params[:search]
-      @articles = Article.search(params[:search]).limit(5).offset(@page * 5).order(created_at: :desc)
+      @articles = Article.search(params[:search]).limit(per_page).offset(@page * per_page).order(created_at: :desc)
     elsif params[:month]
       date = Date.parse("1 #{params[:month]}")
-      @articles = Article.limit(5).offset(@page * 5).where(:created_at => date..date.end_of_month)
+      @articles = Article.limit(per_page).offset(@page * per_page).where(:created_at => date..date.end_of_month)
     else
-      @articles = Article.limit(5).offset(@page * 5).order(created_at: :desc)
+      @articles = Article.limit(per_page).offset(@page * per_page).order(created_at: :desc)
     end
   end
 
