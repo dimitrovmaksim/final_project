@@ -39,10 +39,10 @@
       <!-- Pager -->
       <ul class="pager">
         <li class="previous">
-          <a href="#">&larr; Newer</a>
+          <%= link_to '< Newer', root_path(:page => @newer_page) if @newer_page.present? %>
         </li>
         <li class="next">
-          <a href="#">Older &rarr;</a>
+          <%= link_to 'Older >', root_path(:page => @older_page) if @older_page == 1 %>
         </li>
       </ul>
     </div>

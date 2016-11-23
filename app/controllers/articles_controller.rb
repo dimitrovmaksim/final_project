@@ -3,13 +3,18 @@ class ArticlesController < ApplicationController
   skip_before_action :check_admin, only: [:index, :show]
 
   def index
+
+    @page = params[:page].to_i
+    @newer_page = @page - 1 unless @page == 0
+    @older_page = @page + 1 unless (@page * 5 > Article.count)
+
     if params[:search]
-      @articles = Article.search(params[:search]).order(created_at: :desc)
+      @articles = Article.search(params[:search]).limit(5).offset(@page * 5).order(created_at: :desc)
     elsif params[:month]
       date = Date.parse("1 #{params[:month]}")
-      @articles = Article.where(:created_at => date..date.end_of_month)
+      @articles = Article.limit(5).offset(@page * 5).where(:created_at => date..date.end_of_month)
     else
-      @articles = Article.order(created_at: :desc)
+      @articles = Article.limit(5).offset(@page * 5).order(created_at: :desc)
     end
   end
 
