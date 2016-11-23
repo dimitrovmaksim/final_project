@@ -16,10 +16,9 @@
    <div class="row">
       <div class="col-lg-6">
         <ul class="list-unstyled">
-          <li><a href="#">October</a></li>
-          <li><a href="#">September</a></li>
-          <li><a href="#">August</a></li>
-          <li><a href="#">July</a></li>
+          <% Article.order(created_at: :desc).group_by { |article| article.created_at.strftime("%B %Y") }.take(10).each do |month, article| %>
+            <li><%= link_to month, root_path(:month => month) %></li>
+          <% end %>
         </ul>
       </div>
     </div>

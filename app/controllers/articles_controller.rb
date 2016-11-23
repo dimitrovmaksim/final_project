@@ -5,6 +5,9 @@ class ArticlesController < ApplicationController
   def index
     if params[:search]
       @articles = Article.search(params[:search]).order(created_at: :desc)
+    elsif params[:month]
+      date = Date.parse("1 #{params[:month]}")
+      @articles = Article.where(:created_at => date..date.end_of_month)
     else
       @articles = Article.order(created_at: :desc)
     end
