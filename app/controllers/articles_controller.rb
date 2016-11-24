@@ -7,7 +7,7 @@ class ArticlesController < ApplicationController
       @articles = Article.search(params[:search]).order(created_at: :desc)
     elsif params[:month]
       date = Date.parse("1 #{params[:month]}")
-      @articles = Article.where(:created_at => date..date.end_of_month)
+      @articles = Article.where(:created_at => date..date.end_of_month).order(created_at: :desc)
     else
       @page = params[:page].to_i
       per_page = 5
