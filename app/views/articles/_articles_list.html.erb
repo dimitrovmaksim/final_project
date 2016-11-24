@@ -43,10 +43,10 @@
 
         <ul class="pager">
           <li class="previous">
-            <%= link_to '< Newer', root_path(:page => @newer_page) if @newer_page.present? %>
+            <%= link_to '< Newer', root_path(@additional_options.merge(page: @newer_page)) if @newer_page.present? %>
           </li>
           <li class="next">
-            <%= link_to 'Older >', root_path(:page => @older_page) if @older_page.present? %>
+            <%= link_to 'Older >', root_path(@additional_options.merge(page: @older_page)) if @older_page.present? %>
           </li>
         </ul>
     </div>
