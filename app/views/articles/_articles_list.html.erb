@@ -2,6 +2,9 @@
   <div class="row">
     <!-- Blog Entries Column -->
     <div class="col-md-8">
+      <% if params[:search] %>
+        <h4>Results for <i>"<%= params[:search] %>"</i></h4>
+      <% end %>
       <!-- First Blog Post -->
       <% articles.each do |article| %>
         <% cache article do %>
@@ -37,14 +40,15 @@
       <% end %>
 
       <!-- Pager -->
-      <ul class="pager">
-        <li class="previous">
-          <%= link_to '< Newer', root_path(:page => @newer_page) if @newer_page.present? %>
-        </li>
-        <li class="next">
-          <%= link_to 'Older >', root_path(:page => @older_page) if @older_page == 1 %>
-        </li>
-      </ul>
+
+        <ul class="pager">
+          <li class="previous">
+            <%= link_to '< Newer', root_path(:page => @newer_page) if @newer_page.present? %>
+          </li>
+          <li class="next">
+            <%= link_to 'Older >', root_path(:page => @older_page) if @older_page.present? %>
+          </li>
+        </ul>
     </div>
     <%= render 'layouts/sidebar' %>
   </div>

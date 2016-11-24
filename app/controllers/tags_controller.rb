@@ -1,4 +1,6 @@
 class TagsController < ApplicationController
+  skip_before_action :authorize, only: [:show]
+  skip_before_action :check_admin, only: [:show]
 
   def index
     @tags = Tag.order('LOWER(name)')
