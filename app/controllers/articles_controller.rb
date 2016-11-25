@@ -2,16 +2,34 @@ class ArticlesController < ApplicationController
   skip_before_action :authorize, only: [:index, :show]
   skip_before_action :check_admin, only: [:index, :show]
 
+
   def index
+    per_page = 5
+    page = params[:page].present? ? params[:page].to_i : 1
+    page_offset = (page - 1) * per_page
+
+    articles_query = nil
+
     if params[:search]
-      @articles = Article.search(params[:search]).order(created_at: :desc)
+      articles_query = Article.search(params[:search]).order(created_at: :desc)
     elsif params[:month]
       date = Date.parse("1 #{params[:month]}")
-      @articles = Article.where(:created_at => date..date.end_of_month)
+      articles_query = Article.where(:created_at => date..date.end_of_month).order(created_at: :desc)
     else
-      @articles = Article.order(created_at: :desc)
+      articles_query = Article.order(created_at: :desc)
     end
-  end
+
+    all_count = articles_query.count
+
+    @articles = articles_query.limit(per_page).offset(page_offset)
+    @newer_page = page - 1 unless page == 1
+    @older_page = page + 1 unless page_offset + per_page >= all_count
+
+    @additional_options = {}
+    @additional_options[:month] = params[:month] if params[:month].present?
+    @additional_options[:search] = params[:search] if params[:search].present?
+end
+
 
   def show
     @article = Article.find(params[:id])
