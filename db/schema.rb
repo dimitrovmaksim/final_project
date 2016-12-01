@@ -57,4 +57,5 @@ ActiveRecord::Schema.define(version: 20161121131057) do
     t.string   "user_name"
     t.boolean  "admin",         default: false
   end
+
 end
