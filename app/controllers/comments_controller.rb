@@ -6,11 +6,11 @@ class CommentsController < ApplicationController
     @comment = @article.comments.create(comment_params)
     @comment.user = current_user
     if @comment.save
-      redirect_to article_path(@article)
-    else
-      redirect_to article_path(@article)
-      flash[:error] = 'Comment must be at least 3 characters long!'
+      flash[:notice] = "Comment posted!"
+    elsif @comment.errors.any?
+      flash[:error] = "#{@comment.errors.full_messages.join(". ")}"
     end
+    redirect_to article_path(@article)
   end
 
   def destroy

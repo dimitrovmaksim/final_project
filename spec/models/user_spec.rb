@@ -1,11 +1,10 @@
 require 'rails_helper'
 
-user = User.create(email: 'max@abv.bg', password: '123456', user_name: 'Maxim')
-
 RSpec.describe User, :type => :model do
   subject {
-    described_class.new(id: '2', email: 'maxi@abv.bg', password: '123456',created_at: DateTime.now, updated_at: DateTime.now, user_name: 'Maxi', admin: true)
+    described_class.new(email: 'maxi@abv.bg', password: '123456', user_name: 'Maxi', admin: true)
   }
+  let(:user) { User.create(email: 'maksim@abv.bg', password: '123456', user_name: 'Maxim', admin: true) }
 
 
   it "is valid with valid attributes" do
@@ -27,32 +26,32 @@ RSpec.describe User, :type => :model do
     expect(subject).to_not be_valid
   end
 
-  it "has blank email" do
+  it "cannot have blank email" do
     subject.email = nil
     expect(subject).to_not be_valid
   end
 
-  it "has blank user name" do
+  it "cannot have blank user name" do
     subject.user_name = nil
     expect(subject).to_not be_valid
   end
 
- it "has unique user name" do
+ it "does not have unique user name" do
     subject.user_name = "Maxim"
     expect(subject).to_not be_valid
   end
 
-  it "has user name with 3 or less characters" do
+  it "has user name with less than 3 characters" do
     subject.user_name = "Ma"
     expect(subject).to_not be_valid
   end
 
-  it "has blank password" do
+  it "cannot have blank password" do
     subject.password = nil
     expect(subject).to_not be_valid
   end
 
-  it "has invalid password" do
+  it "cannot have invalid password" do
     subject.password = "12345"
     expect(subject).to_not be_valid
   end
