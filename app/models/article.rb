@@ -22,7 +22,7 @@ class Article < ApplicationRecord
   end
 
   def self.search(search)
-    where("title LIKE ? OR text LIKE ? ", "%#{search}%", "%#{search}%")
+    where("lower(title) LIKE ? OR lower(text) LIKE ? ", "%#{search.downcase}%", "%#{search.downcase}%")
   end
 end
 
