@@ -5,7 +5,11 @@ class CommentsController < ApplicationController
     @article = Article.find(params[:article_id])
     @comment = @article.comments.create(comment_params)
     @comment.user = current_user
-    @comment.save!
+    if @comment.save
+      flash[:notice] = "Comment posted!"
+    elsif @comment.errors.any?
+      flash[:error] = @comment.errors.full_messages.join(". ")
+    end
     redirect_to article_path(@article)
   end
 
