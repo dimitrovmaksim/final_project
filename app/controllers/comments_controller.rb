@@ -8,7 +8,7 @@ class CommentsController < ApplicationController
     if @comment.save
       flash[:notice] = "Comment posted!"
     elsif @comment.errors.any?
-      flash[:error] = "#{@comment.errors.full_messages.join(". ")}"
+      flash[:error] = @comment.errors.full_messages.join(". ")
     end
     redirect_to article_path(@article)
   end

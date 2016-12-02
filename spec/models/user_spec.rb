@@ -41,7 +41,7 @@ RSpec.describe User, :type => :model do
     expect(subject).to_not be_valid
   end
 
-  it "has user name with less than 3 characters" do
+  it "cannot have user name with less than 3 characters" do
     subject.user_name = "Ma"
     expect(subject).to_not be_valid
   end
