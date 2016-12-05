@@ -31,24 +31,21 @@
           <%= link_to tag.name, tag_path(tag) %>
         <% end %>
       </p>
-        <% if current_user && current_user.admin? %>
-          <%= link_to 'Edit', edit_article_path(@article), :class => "btn btn-sm btn-warning" %>
-          <%= link_to 'Delete', article_path(@article), :class => "btn btn-sm btn-danger", method: :delete, data: {confirm: 'Are you sure?'} %>
-          <%= link_to 'Home', articles_path, :class => "btn btn-sm btn-primary" %>
-        <%  else %>
-          <%= link_to 'Back', :back, :class => "btn btn-sm btn-primary" %>
-        <% end %>
-      </p>
-      <p>
-        <%= render 'comments/form' %>
-      </p>
-      <p>
-        <% if @comments.present? %>
-          <%= render @comments %>
-        <% else %>
-          Be the first to comment!
-        <% end %>
-      </p>
+      <% if current_user && current_user.admin? %>
+        <%= link_to 'Edit', edit_article_path(@article), :class => "btn btn-sm btn-warning" %>
+        <%= link_to 'Delete', article_path(@article), :class => "btn btn-sm btn-danger", method: :delete, data: {confirm: 'Are you sure?'} %>
+        <%= link_to 'Home', articles_path, :class => "btn btn-sm btn-primary" %>
+      <%  else %>
+        <%= link_to 'Back', :back, :class => "btn btn-sm btn-primary" %>
+      <% end %>
+      <hr>
+      <%= render 'comments/form' %>
+      <% if @comments.present? %>
+        <%= render @comments %>
+      <% else %>
+        Be the first to comment!
+      <% end %>
+
     </div>
     <%= render 'layouts/sidebar' %>
   </div>
