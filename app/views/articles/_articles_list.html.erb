@@ -24,8 +24,8 @@
         </p>
 
         <p>
-        <div class="ellipsis">
-          <span class="nowrap"><%= article.text.html_safe %></span>
+        <div>
+          <span><%= raw article.text.truncate(195) %></span>
         </div>
         </p>
 
