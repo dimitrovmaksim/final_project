@@ -1,8 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-8">
-      <div><%= @user.user_name %></div><br>
-
+      <div><b>User Name:</b> <%= @user.user_name %></div><br>
       <% if current_user.id == @user.id %>
         <div><strong>Change Password:</strong></div><br>
         <%= render 'form' %>

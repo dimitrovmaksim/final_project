@@ -3,7 +3,8 @@
     <div class="col-lg-8">
       <% @users.each do |user| %>
         <p>
-          <%= link_to user.user_name, user %>
+          <%= link_to user.user_name, user %>|
+          <%= user.email %>|
           <%= link_to 'Delete', user, :class => "btn btn-xs btn-danger", method: :delete, data: {confirm: 'Are you sure?'} %>
         </p>
       <% end %>
