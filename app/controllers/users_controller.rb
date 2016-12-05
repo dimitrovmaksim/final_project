@@ -17,9 +17,10 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to root_url, notice: "Registered!"
-    else
-      render "new"
+      redirect_to root_path, notice: "Registered!"
+    elsif @user.errors.any?
+      redirect_to sign_up_path
+      flash[:error] = @user.errors.full_messages.join(". ")
     end
   end
 

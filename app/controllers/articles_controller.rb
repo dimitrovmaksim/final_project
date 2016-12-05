@@ -28,7 +28,7 @@ class ArticlesController < ApplicationController
     @additional_options = {}
     @additional_options[:month] = params[:month] if params[:month].present?
     @additional_options[:search] = params[:search] if params[:search].present?
-end
+  end
 
 
   def show
