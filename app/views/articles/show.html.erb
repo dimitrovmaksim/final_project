@@ -34,8 +34,10 @@
         <% if current_user && current_user.admin? %>
           <%= link_to 'Edit', edit_article_path(@article), :class => "btn btn-sm btn-warning" %>
           <%= link_to 'Delete', article_path(@article), :class => "btn btn-sm btn-danger", method: :delete, data: {confirm: 'Are you sure?'} %>
+          <%= link_to 'Home', articles_path, :class => "btn btn-sm btn-primary" %>
+        <%  else %>
+          <%= link_to 'Back', :back, :class => "btn btn-sm btn-primary" %>
         <% end %>
-        <%= link_to 'Home', articles_path, :class => "btn btn-sm btn-primary" %>
       </p>
       <p>
         <%= render 'comments/form' %>
