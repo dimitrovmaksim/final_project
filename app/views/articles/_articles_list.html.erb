@@ -25,7 +25,7 @@
 
         <p>
         <div>
-          <span><%= raw article.text.truncate(195) %></span>
+          <span><%= sanitize article.text.truncate(195), tags: %w(i a p br b u), attributes: %w(href) %></span>
         </div>
         </p>
 
