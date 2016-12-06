@@ -23,7 +23,7 @@
 
   <div class="well">
     <h4>Tags</h4>
-    <% Tag.all.each do |tag| %>
+    <% Tag.order('LOWER(name)').each do |tag| %>
       <%= link_to tag.name, tag_path(tag) %>
     <% end %>
   </div>
