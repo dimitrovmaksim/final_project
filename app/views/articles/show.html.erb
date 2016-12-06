@@ -24,7 +24,7 @@
       <!-- Post Content -->
       <p class="lead"><%= sanitize @article.text, tags: %w(i a p br b u img), attributes: %w(href src height) %></p>
 
-      <hr>
+      <br>
       <p>
         Tags:
         <% @article.tags.each do |tag| %>
@@ -43,6 +43,7 @@
       <% if @comments.present? %>
         <%= render @comments %>
       <% else %>
+      <br>
         Be the first to comment!
       <% end %>
 
