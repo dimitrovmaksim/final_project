@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_many :comments
+  has_many :comments, dependent: :destroy
   has_many :articles
   attr_accessor :password
   before_save :encrypt_password
