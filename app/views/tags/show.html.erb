@@ -1,1 +1,1 @@
-<%= render partial: 'articles/articles_list', locals: { articles: @tag.articles } %>
+<%= render partial: 'articles/articles_list', locals: { articles: @tag.articles.order(created_at: :desc) } %>
