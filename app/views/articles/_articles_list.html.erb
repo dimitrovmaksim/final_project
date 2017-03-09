@@ -23,11 +23,11 @@
         <% end %>
         </p>
 
-        <p>
+        <br>
         <div>
           <span><%= sanitize article.text.truncate(195), tags: %w(i a p br b u), attributes: %w(href) %></span>
         </div>
-        </p>
+        <br>
 
         <%= link_to article_path(article), :class => "btn btn-sm btn-primary" do %>Read more<span class="glyphicon glyphicon-chevron-right"></span>
         <% end %>
