@@ -1,6 +1,16 @@
 .dropdown-menu>li>a {
-    color: #828282;
-    background-color: #1e1d1d;
+  color: #828282;
 }
 
+.dropdown-menu {
+  background-color: #1e1d1d;
+}
 
+.dropdown-menu>li>a:hover {
+    background-color: #1e1d1d;
+    color: #ffffff
+}
+
+.dropdown-toggle {
+  cursor: pointer;
+}
