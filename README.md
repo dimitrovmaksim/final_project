@@ -1,4 +1,4 @@
-A simple blog platform that lets you to share your stories with the world:
+A simple blog platform that lets you share your stories with the world:
 
   1. Five posts/articles per page on the index.
   2. Register/Login to leave comments under the posts/articles.
